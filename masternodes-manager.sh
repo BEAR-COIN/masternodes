@@ -7,7 +7,7 @@ show_menu(){
     fgred=`echo "\033[31m"`
     printf "\n${menu}*********************************************${normal}"
     printf "\n${menu}**** BEAR Coin Multi Masternodes Manager ****${normal}"
-    printf "\n${menu}***************** ver 1.0.0 *****************${normal}"
+    printf "\n${menu}***************** ver 1.0.1 *****************${normal}"
     printf "\n${menu}*********** https://bearcoin.net ************${normal}"
     printf "\n${menu}*********************************************${normal}\n"
     printf "${menu}**${number} 1)${menu} Get VPS info ${normal}\n"
@@ -41,7 +41,7 @@ print_msg(){
 
 get_vps_info(){
     print_msg "VPS IP:";
-    printf $(dig +short myip.opendns.com @resolver1.opendns.com)
+    printf $(dig +short -4 myip.opendns.com @resolver1.opendns.com)
     printf "\n${menu}*********************************************${normal}\n"
 
     print_msg "Path for BEAR Coin masternodes:";
@@ -113,7 +113,7 @@ install_masternode(){
 	configFile="$HOME/BEAR/$mnAlias/bear.conf"
 	port=$(expr $noOfMasternodes + 7171)
 	rpcPort=$(expr $noOfMasternodes + 8181)
-	ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+	ip=$(dig +short -4 myip.opendns.com @resolver1.opendns.com)
 
 	echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` > $configFile
   	echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> $configFile
