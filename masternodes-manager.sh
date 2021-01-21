@@ -7,7 +7,7 @@ show_menu(){
     fgred=`echo "\033[31m"`
     printf "\n${menu}*********************************************${normal}"
     printf "\n${menu}**** BEAR Coin Multi Masternodes Manager ****${normal}"
-    printf "\n${menu}***************** ver 1.0.1 *****************${normal}"
+    printf "\n${menu}***************** ver 1.0.2 *****************${normal}"
     printf "\n${menu}*********** https://bearcoin.net ************${normal}"
     printf "\n${menu}*********************************************${normal}\n"
     printf "${menu}**${number} 1)${menu} Get VPS info ${normal}\n"
@@ -156,6 +156,8 @@ before_installation() {
   sudo ufw allow ssh
   sudo ufw allow 7171
   sudo ufw --force enable
+
+  sudo apt-get install dnsutils
 
   bearJSON=$(wget https://bearcoin.net/bear.json --no-check-certificate -q -O -)
   walletURL=` jq -r '.mnManager.walletURL' <<< "${bearJSON}"` 
